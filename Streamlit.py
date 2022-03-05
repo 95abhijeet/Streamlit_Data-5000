@@ -10,4 +10,4 @@ with header:
     htmlfile=open("Google trend.html", 'r', encoding ='utf-8')
     source_code = htmlfile.read()
     print(source_code)
-    components.html(source_code, height = 800, width = 1000)
+    components.html(source_code, height = 1000, width = 1000)
