@@ -32,21 +32,17 @@ area = df['Geography'].unique().tolist()
 columns = st.columns((2,2,2,2))
 
 with columns[0]:
-    characteristics_selection = st.multiselect('Characteristics',
-                                        characteristics,
-                                        default = 'Unemployment')
+    characteristics_selection = [st.radio("Characteristics",
+                                        characteristics)]
 with columns[1]:
-    age_group_selection = st.multiselect('Age Groups',
-                                        age_group,
-                                        default= '15 years and over')
+    age_group_selection = [st.radio('Age Groups',
+                                        age_group)]
 with columns[2]:
-    gender_selection = st.multiselect('Gender',
-                                    gender,
-                                    default = 'Both sexes')                                
+    gender_selection = [st.radio('Gender',
+                                    gender)]                              
 with columns[3]:
-    area_selection = st.multiselect('Geography',
-                                    area,
-                                    default = 'Ontario')
+    area_selection = [st.radio('Geography',
+                                    area)]
 
 gender_males = ['Males']
 gender_females = ['Females']
