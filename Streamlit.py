@@ -1,7 +1,6 @@
 from email import header
 from email.policy import default
 from re import template
-from turtle import color
 from matplotlib.pyplot import title
 from sqlalchemy import Column
 import streamlit as st
@@ -20,7 +19,7 @@ st.balloons()
 
 st.title('Covid impact on labour market')
 
-df=pd.DataFrame(pd.read_csv('CleanedV2.1.csv'))
+df=pd.DataFrame(pd.read_csv('F:/Second term/5000/Project/Datasets/CleanedV2.1.csv'))
 
 
 ## Data filter options
