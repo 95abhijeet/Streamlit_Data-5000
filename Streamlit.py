@@ -81,7 +81,7 @@ with container:
     
 
     fig1 = px.line(df[mask2], x = 'Date', y = 'Value', facet_col='Sex', template='gridon')
-    fig1.update_layout( width=1200, height = 500)
+    fig1.update_layout( width=1000, height = 500)
     #fig1.update_layout({'plot_bgcolor':'rgba(0, 0, 0, 0)'})
     st.plotly_chart(fig1)
 
@@ -93,7 +93,7 @@ with container:
     st.markdown("Age filter at top is NA for this section")
     
     fig2=px.line(df[mask3], x='Date', y='Value', facet_col='Age group', template='gridon')
-    fig2.update_layout( width=1500, height=500)
+    fig2.update_layout( width=1200, height=500)
     st.plotly_chart(fig2)
     
     # columns = st.columns((2,2))
@@ -128,7 +128,7 @@ with container:
     htmlfile=open("Google trend.html", 'r', encoding ='utf-8')
     source_code = htmlfile.read()
     print(source_code)
-    components.html(source_code, height = 1000, width = 1000)
+    components.html(source_code, height = 900, width = 1000)
 
 ##  dataset
 # with container:
@@ -213,7 +213,7 @@ with container:
 
 
     fig9 = px.line(df2[mask10], x='Date', y='Value', facet_col='NAICS',
-                        facet_col_wrap=4, title= "Services", template='gridon')
-    fig9.update_layout(title_x=0.5, title_y=1.0, width=1600, height= 700)
+                        facet_col_wrap=3, title= "Services", template='gridon')
+    fig9.update_layout(title_x=0.5, title_y=1.0, width=1200, height= 900)
     #fig9.update_layout({'plot_bgcolor':'rgba(0,0,0,0)'})
     st.plotly_chart(fig9)
