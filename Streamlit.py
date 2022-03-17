@@ -27,7 +27,7 @@ st.title('Covid impact on labour market')
 container = st.container()
 
 with container:
-    df=pd.DataFrame(pd.read_csv('CleanedV1.1.csv'))
+    df=pd.DataFrame(pd.read_csv('CleanedV2.1.csv'))
 
     ###     LABOUR FORCE
     ## Data filter options
