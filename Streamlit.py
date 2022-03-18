@@ -43,7 +43,7 @@ with container:
 
     with st.expander("Option 1 : Comparison by Gender"):
     
-        df=pd.DataFrame(pd.read_csv('F:/Second term/5000/Project/Datasets/Cleaned_Labour force_V1.1.csv'))
+        df=pd.DataFrame(pd.read_csv('Cleaned_Labour force_V1.1.csv'))
         # datset for labour force
 
 
@@ -147,7 +147,7 @@ with container:
 
 ###     INDUSTRY
 
-df2 = pd.DataFrame(pd.read_csv('F:/Second term/5000/Project/Datasets/Cleaned_Industry_V1.1.csv'))
+df2 = pd.DataFrame(pd.read_csv('Cleaned_Industry_V1.1.csv'))
 # dataset for industries
 
 with container:
@@ -232,7 +232,7 @@ with container:
 
 ###         EDUCATION
 
-df3 = pd.read_csv('F:/Second term/5000/Project/Datasets/Cleaned_Education_V1.1.csv')
+df3 = pd.read_csv('Cleaned_Education_V1.1.csv')
 
 with container:
 
