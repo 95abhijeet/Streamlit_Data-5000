@@ -219,7 +219,7 @@ with container:
 
         
         fig7 = px.line(df2[mask11], x='Date', y='Value', color='NAICS', title= "Goods VS Services",color_discrete_sequence=px.colors.qualitative.Dark2, template ='ygridoff')
-        fig7.update_layout(title_x=0.5, title_y=0.9, width = 800, height=500)
+        fig7.update_layout(title_x=0.5, title_y=0.9, width = 1000, height=600)
         # fig7.update_layout({'plot_bgcolor':'rgba(0,0,0,0)'})
         fig7.update_layout(xaxis=dict(tickmode = 'linear',
                                         tick0 = 2017,
@@ -305,7 +305,7 @@ with container:
         fig10 = px.bar(df3[mask13], x='Value', y='Geography', color='Date', title='Education',
                             color_discrete_sequence=px.colors.qualitative.Set3, template ='ygridoff')
         fig10.update_layout(yaxis={'categoryorder':'total ascending'})
-        fig10.update_layout(title_x=0.5,yaxis_title=None, width=1000, height= 600)
+        fig10.update_layout(title_x=0.5,yaxis_title=None, width=1200, height= 600)
         fig10.update_yaxes(tickangle=0,ticklabelposition="inside top")
         fig10.update_layout(legend=dict(
                             yanchor="bottom",
