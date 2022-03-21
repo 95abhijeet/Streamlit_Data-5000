@@ -2,7 +2,7 @@ from email import header
 from email.policy import default
 from re import template
 from matplotlib.axis import YTick
-from matplotlib.pyplot import title, xticks
+from matplotlib.pyplot import figure, title, xticks
 from sqlalchemy import Column
 import streamlit as st
 import streamlit.components.v1 as  components
@@ -10,11 +10,13 @@ import pandas as pd
 import plotly
 import plotly.express as px
 import plotly.io as pio
+from plotly.subplots import make_subplots
+import plotly.graph_objects as go
 
-st.set_page_config(page_title='Data 5000 project', layout='wide')
-                                                   # menu_items={
-                                                               # 'Get Help': '<email-id>',
-                                                               # 'Report a bug': "<email-id>",
+st.set_page_config(page_title='Data 5000 project', layout='wide') 
+                                                #    menu_items={
+                                                #                'Get Help': '<95abhijeet@gmail.com>',
+                                                #                'Report a bug': "<95abhijeet@gmail.com>"})
                                                               #  'About': "# This is a header. This is an *extremely* cool app!"})
 import time
 with st.spinner('Wait for it...'):
@@ -43,7 +45,7 @@ with container:
 
     with st.expander("Option 1 : Comparison by Gender"):
     
-        df=pd.DataFrame(pd.read_csv('Cleaned_Labour force_V1.1.csv'))
+        df=pd.DataFrame(pd.read_csv('F:/Second term/5000/Project/Datasets/Cleaned_Labour force_V1.1.csv'))
         # datset for labour force
 
 
@@ -70,7 +72,9 @@ with container:
                                             area)]
 
         gender_both = ['Males','Females']
-        all_age = ['15 years and over','15 to 24 years','25 to 54 years','55 years and over']
+        gender_males = ['Males']
+        gender_females = ['Females']
+        all_age = ['15 to 24 years','25 to 54 years','55 years and over']
         age_15_over = ['15 years and over']
         age_15_24 = ['15 to 24 years']
         age_25_54 = ['25 to 54 years']
@@ -79,46 +83,60 @@ with container:
         ## Dataframe filter/mask
 
         mask1 = (df['Geography'].isin(area_selection)) & (df['Labour force characteristics'].isin(characteristics_selection)) & (df['Sex'].isin(gender_selection)) & (df['Age group'].isin(age_group_selection))
-        mask2 = (df['Geography'].isin(area_selection)) & (df['Labour force characteristics'].isin(characteristics_selection)) & (df['Age group'].isin(age_group_selection)) & (df['Sex'].isin(gender_both))
+        mask2 = (df['Geography'].isin(area_selection)) & (df['Labour force characteristics'].isin(characteristics_selection)) & (df['Age group'].isin(age_group_selection)) & (df['Sex'].isin(gender_males))
+        mask14 = (df['Geography'].isin(area_selection)) & (df['Labour force characteristics'].isin(characteristics_selection)) & (df['Age group'].isin(age_group_selection)) & (df['Sex'].isin(gender_females))
         mask3 = (df['Geography'].isin(area_selection)) & (df['Labour force characteristics'].isin(characteristics_selection)) & (df['Age group'].isin(all_age)) & (df['Sex'].isin(gender_selection))
         mask4 = (df['Geography'].isin(area_selection)) & (df['Labour force characteristics'].isin(characteristics_selection)) & (df['Sex'].isin(gender_selection)) & (df['Age group'].isin(age_15_over))
         mask5 = (df['Geography'].isin(area_selection)) & (df['Labour force characteristics'].isin(characteristics_selection)) & (df['Sex'].isin(gender_selection)) & (df['Age group'].isin(age_15_24))
         mask6 = (df['Geography'].isin(area_selection)) & (df['Labour force characteristics'].isin(characteristics_selection)) & (df['Sex'].isin(gender_selection)) & (df['Age group'].isin(age_25_54))
         mask7 = (df['Geography'].isin(area_selection)) & (df['Labour force characteristics'].isin(characteristics_selection)) & (df['Sex'].isin(gender_selection)) & (df['Age group'].isin(age_55_over))
         mask8 = (df['Geography'].isin(area_selection)) & (df['Labour force characteristics'].isin(characteristics_selection))
+        st.subheader("Comparison by gender")
+        st.markdown("Gender filter at top is NA for this section")
 
-
-        columns = st.columns((2,1))
+        columns = st.columns((2,2))
 
         with columns[0]:
-
-            st.subheader("Comparison by gender")
-            st.markdown("Gender filter at top is NA for this section")
-            
-
-            fig1 = px.line(df[mask2], x = 'Date', y = 'Value', facet_col='Sex', template='gridon')
-            fig1.update_layout( width=1000, height = 500)
-            #fig1.update_layout({'plot_bgcolor':'rgba(0, 0, 0, 0)'})
+            fig1 = px.line(df[mask2], x = 'Date', y = 'Value', title = 'Males', template='xgridoff')
+            #fig1.update_layout( width=1000, height = 500)
+            # fig1.update_layout({#'plot_bgcolor':'rgba(250, 240, 230, 0.5)',
+            #                     'paper_bgcolor':'#AFEEEE'})
             st.plotly_chart(fig1)
 
         with columns[1]:
-            st.markdown("*We can write some description here*")
-            st.write("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa  \n"
-                        "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa  \n"
-                            "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
+            fig2 = px.line(df[mask14], x = 'Date', y = 'Value', title='Females' , template='xgridoff')
+            #fig2.update_layout( width=1000, height = 500)
+            # fig2.update_layout({'plot_bgcolor':'rgba(255, 0, 0, 0.2)'})
+            st.plotly_chart(fig2)
+
+        st.markdown("*We can write some description here*")
+        st.write("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa  \n"
+                    "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa  \n"
+                        "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
 
 ###         COMPARISION BY AGE
 with container:
 
     with st.expander("Option 2 : Comaprison by Age"):
-
-        # st.markdown("___")
         st.subheader("Comparison by age")
         st.markdown("Age filter at top is NA for this section")
         
-        fig2=px.line(df[mask3], x='Date', y='Value', facet_col='Age group', template='gridon')
-        fig2.update_layout( width=1200, height=500)
-        st.plotly_chart(fig2)
+        columns = st.columns((2,1))
+
+        with columns[0]:
+        # st.markdown("___")
+       
+            fig4=px.line(df[mask4], x='Date', y='Value',title ='Age 15 and above', template='xgridoff')
+            fig4.update_layout( width=1200, height=500)
+            st.plotly_chart(fig4)
+
+            fig3=px.line(df[mask3], x='Date', y='Value', facet_col='Age group', template='xgridoff')
+            fig3.update_layout( width=1200, height=500)
+            st.plotly_chart(fig3)
+
+        with columns[1]:
+            st.markdown("*aaaaaaaaaaaaa*")
+
     
         # columns = st.columns((2,2))
 
@@ -147,7 +165,7 @@ with container:
 
 ###     INDUSTRY
 
-df2 = pd.DataFrame(pd.read_csv('Cleaned_Industry_V1.1.csv'))
+df2 = pd.DataFrame(pd.read_csv('F:/Second term/5000/Project/Datasets/Cleaned_Industry_V1.1.csv'))
 # dataset for industries
 
 with container:
@@ -199,10 +217,10 @@ with container:
         mask11 = (df2['NAICS'].isin(industry2)) & (df2['Geography'].isin(area_selection2)) & (df2['Labour force characteristics'].isin(characteristics_selection2)) & (df2['Age group'].isin(age_group_selection2)) & (df2['Sex'].isin(gender_selection2))
 
 
-
-        fig7 = px.line(df2[mask11], x='Date', y='Value', color='NAICS', title= "Goods VS Services", template='simple_white')
-        fig7.update_layout(title_x=0.5, title_y=0.9, width=900, height= 600)
-        fig7.update_layout({'plot_bgcolor':'rgba(0,0,0,0)'})
+        
+        fig7 = px.line(df2[mask11], x='Date', y='Value', color='NAICS', title= "Goods VS Services",color_discrete_sequence=px.colors.qualitative.Dark2, template ='ygridoff')
+        fig7.update_layout(title_x=0.5, title_y=0.9, width = 1200, height=600)
+        # fig7.update_layout({'plot_bgcolor':'rgba(0,0,0,0)'})
         fig7.update_layout(xaxis=dict(tickmode = 'linear',
                                         tick0 = 2017,
                                         dtick = 1),
@@ -210,29 +228,41 @@ with container:
                                         tick0 = 0,
                                         dtick = 2000))
         st.plotly_chart(fig7)
+        columns = st.columns((2,2))
+        with columns[0]:
+            fig8 = px.line(df2[mask9], x='Date', y='Value', color='NAICS', title= "Goods", template='ygridoff')
+            fig8.update_layout(title_x=0.5, title_y=0.9, width = 800, height=600)
+            # fig8.update_layout({'plot_bgcolor':'rgba(0,0,0,0)'})
+            fig8.update_layout(xaxis=dict(tickmode = 'linear',
+                                            tick0 = 2017,
+                                            dtick = 1),
+                            yaxis=dict(tickmode = 'linear',
+                                            tick0 = 0,
+                                            dtick = 100))
+            fig8.update_layout(legend=dict(yanchor="top", y=0.9, xanchor="left", x=1.0))
+            st.plotly_chart(fig8)
 
-        fig8 = px.line(df2[mask9], x='Date', y='Value', color='NAICS', title= "Goods", template='simple_white')
-        fig8.update_layout(title_x=0.5, title_y=0.9, width=900, height= 600)
-        fig8.update_layout({'plot_bgcolor':'rgba(0,0,0,0)'})
-        fig8.update_layout(xaxis=dict(tickmode = 'linear',
-                                        tick0 = 2017,
-                                        dtick = 1),
-                        yaxis=dict(tickmode = 'linear',
-                                        tick0 = 0,
-                                        dtick = 100))
-        fig8.update_layout(legend=dict(yanchor="top", y=0.9, xanchor="left", x=1.0))
-        st.plotly_chart(fig8)
+        with columns[1]:
+            fig9 = px.line(df2[mask10], x='Date', y='Value',#, facet_col='NAICS',facet_col_wrap=3, 
+                            color ='NAICS', title= "Services",template='ygridoff')
+            fig9.update_layout(title_x=0.5, title_y=1.0, width = 800, height=600)
+            # fig9.update_layout({'plot_bgcolor':'rgba(0,0,0,0)'})
+            fig9.update_layout(xaxis=dict(tickmode = 'linear',
+                                            tick0 = 2017,
+                                            dtick = 1),
+                            yaxis=dict(tickmode = 'linear',
+                                            tick0 = 0,
+                                            dtick = 100))
+            st.plotly_chart(fig9)
 
 
-        fig9 = px.line(df2[mask10], x='Date', y='Value', facet_col='NAICS',
-                            facet_col_wrap=3, title= "Services", template='gridon')
-        fig9.update_layout(title_x=0.5, title_y=1.0, width=1200, height= 700)
-        fig9.update_layout({'plot_bgcolor':'rgba(0,0,0,0)'})
-        st.plotly_chart(fig9)
+        st.markdown("*aaaaaaaaaaaaaaaaaa*")
+
+
 
 ###         EDUCATION
 
-df3 = pd.read_csv('Cleaned_Education_V1.1.csv')
+df3 = pd.read_csv('F:/Second term/5000/Project/Datasets/Cleaned_Education_V1.1.csv')
 
 with container:
 
@@ -246,44 +276,63 @@ with container:
         types_status = df3['Status of student in Canada'].unique().tolist()
         types_geo = df3['Geography'].unique().tolist()
         
-        columns =  st.columns((1,2))
+        columns =  st.columns((1,1,1))
 
         with columns[0]:    
-            st.markdown(" ")
-            st.markdown(" ")
-            genders_selection  = [st.radio("Gender",
-                                            types_gender)]
             standards_selection = [st.radio("Types of standards",
                                             types_standards)]
-      
+            
+        with columns[1]:
+            genders_selection  = [st.radio("Gender",
+                                            types_gender)]
+    
+        with columns[2]:
             status_selection = [st.radio("Status of student",
-                                            types_status)]
+                                        types_status)]
+        
+        geography1 = ['Canada']
+        geography2 = ['Alberta','British Columbia','Manitoba','New Brunswick','Newfoundland and Labrador','Nova Scotia','Ontario','Prince Edward Island','Quebec','Saskatchewan','Territories']
+        geography = ['Canada', 'Alberta','British Columbia','Manitoba','New Brunswick','Newfoundland and Labrador','Nova Scotia','Ontario','Prince Edward Island','Quebec','Saskatchewan','Territories']
         # with columns[3]:
         #     geo_selection = [st.multiselect("Geography",
         #                                 types_geo)]
-        mask13 = (df3['Status of student in Canada'].isin(status_selection)) & (df3['Gender'].isin(genders_selection)) & (df3['ISCED'].isin(standards_selection))
-
-        with columns[1]:
-            fig10 = px.bar(df3[mask13], x='Geography', y='Value', color='Date', title='Education')
-            fig10.update_layout(xaxis={'categoryorder':'total descending'})
-            fig10.update_layout(title_x=0.5, title_y=0.9, width=900, height= 600)
-            # fig10.update_layout({'plot_bgcolor':'rgba(0,0,0,0)'})
-            st.plotly_chart(fig10)
-            
-            
-        
-
-
         #mask12 = (df3['Status of student in Canada'].isin(status_selection)) & (df3['Geography'].isin(geo_selection)) & (df3['Gender'].isin(genders_selection)) & (df3['ISCED'].isin(standards_selection))
         
+        mask13 = (df3['Status of student in Canada'].isin(status_selection)) & (df3['Gender'].isin(genders_selection)) & (df3['ISCED'].isin(standards_selection)) & (df3['Geography'].isin(geography))
+        mask14 = (df3['Status of student in Canada'].isin(status_selection)) & (df3['Gender'].isin(genders_selection)) & (df3['ISCED'].isin(standards_selection)) & (df3['Geography'].isin(geography2))
         
 
-        # fig10 = px.bar(df3[mask13], x='Geography', y='Value', color='Date', title='Education')
-        # fig10.update_layout(xaxis={'categoryorder':'total descending'})
-        # fig10.update_layout(title_x=0.5, title_y=0.9, width=900, height= 600)
-        # # fig10.update_layout({'plot_bgcolor':'rgba(0,0,0,0)'})
-        # st.plotly_chart(fig10)
+        fig10 = px.bar(df3[mask13], x='Value', y='Geography', color='Date', title='Education',
+                            color_discrete_sequence=px.colors.qualitative.Set3, template ='ygridoff')
+        fig10.update_layout(yaxis={'categoryorder':'total ascending'}, showlegend=False)
+        fig10.update_layout(title_x=0.5,yaxis_title=None, width=1700, height= 800)
+        fig10.update_yaxes(tickangle=0,ticklabelposition="inside top")
+        fig10.update_layout(legend=dict(
+                            yanchor="bottom",
+                            y=0.01,
+                            xanchor="right",
+                            x=0.8))
+        # fig10.update_layout({'plot_bgcolor':'rgba(0,0,0,0)'})
+        st.plotly_chart(fig10)
 
+        # fig11 = px.bar(df3[mask14], x='Value', y='Geography', color='Date', title='Education', 
+        #     color_discrete_sequence=px.colors.qualitative.Set3, template ='ygridoff')
+        # fig11.update_layout(yaxis={'categoryorder':'total ascending'})
+        # fig11.update_layout(title_x=0.5,yaxis_title=None, width=1700, height= 800)
+        # fig11.update_yaxes(tickangle=0,ticklabelposition="inside top")
+        # fig11.update_layout(legend=dict(
+        #                     yanchor="bottom",
+        #                     y=0.01,
+        #                     xanchor="right",
+        #                     x=0.8))
+        # # fig11.update_layout({'plot_bgcolor':'rgba(0,0,0,0)'})
+        # st.plotly_chart(fig11)
+
+
+                        
+        
+        
+     
 
 ###     GOOGLE TRENDS
 with container:
