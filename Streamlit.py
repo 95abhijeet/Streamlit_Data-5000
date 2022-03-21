@@ -127,11 +127,11 @@ with container:
         # st.markdown("___")
        
             fig4=px.line(df[mask4], x='Date', y='Value',title ='Age 15 and above', template='xgridoff')
-            fig4.update_layout( width=1200, height=500)
+            fig4.update_layout( width=1000, height=500)
             st.plotly_chart(fig4)
 
             fig3=px.line(df[mask3], x='Date', y='Value', facet_col='Age group', template='xgridoff')
-            fig3.update_layout( width=1200, height=500)
+            fig3.update_layout( width=1000, height=500)
             st.plotly_chart(fig3)
 
         with columns[1]:
@@ -219,7 +219,7 @@ with container:
 
         
         fig7 = px.line(df2[mask11], x='Date', y='Value', color='NAICS', title= "Goods VS Services",color_discrete_sequence=px.colors.qualitative.Dark2, template ='ygridoff')
-        fig7.update_layout(title_x=0.5, title_y=0.9, width = 1200, height=600)
+        fig7.update_layout(title_x=0.5, title_y=0.9, width = 800, height=500)
         # fig7.update_layout({'plot_bgcolor':'rgba(0,0,0,0)'})
         fig7.update_layout(xaxis=dict(tickmode = 'linear',
                                         tick0 = 2017,
@@ -231,7 +231,7 @@ with container:
         columns = st.columns((2,2))
         with columns[0]:
             fig8 = px.line(df2[mask9], x='Date', y='Value', color='NAICS', title= "Goods", template='ygridoff')
-            fig8.update_layout(title_x=0.5, title_y=0.9, width = 800, height=600)
+            fig8.update_layout(title_x=0.5, title_y=0.9, width = 700, height=500)
             # fig8.update_layout({'plot_bgcolor':'rgba(0,0,0,0)'})
             fig8.update_layout(xaxis=dict(tickmode = 'linear',
                                             tick0 = 2017,
@@ -245,7 +245,7 @@ with container:
         with columns[1]:
             fig9 = px.line(df2[mask10], x='Date', y='Value',#, facet_col='NAICS',facet_col_wrap=3, 
                             color ='NAICS', title= "Services",template='ygridoff')
-            fig9.update_layout(title_x=0.5, title_y=1.0, width = 800, height=600)
+            fig9.update_layout(title_x=0.5, title_y=1.0, width = 700, height=500)
             # fig9.update_layout({'plot_bgcolor':'rgba(0,0,0,0)'})
             fig9.update_layout(xaxis=dict(tickmode = 'linear',
                                             tick0 = 2017,
@@ -304,8 +304,8 @@ with container:
 
         fig10 = px.bar(df3[mask13], x='Value', y='Geography', color='Date', title='Education',
                             color_discrete_sequence=px.colors.qualitative.Set3, template ='ygridoff')
-        fig10.update_layout(yaxis={'categoryorder':'total ascending'}, showlegend=False)
-        fig10.update_layout(title_x=0.5,yaxis_title=None, width=1700, height= 800)
+        fig10.update_layout(yaxis={'categoryorder':'total ascending'})
+        fig10.update_layout(title_x=0.5,yaxis_title=None, width=1000, height= 600)
         fig10.update_yaxes(tickangle=0,ticklabelposition="inside top")
         fig10.update_layout(legend=dict(
                             yanchor="bottom",
