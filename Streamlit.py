@@ -216,18 +216,25 @@ with container:
         mask10 = (df2['NAICS'].isin(services_industry)) & (df2['Geography'].isin(area_selection2)) & (df2['Labour force characteristics'].isin(characteristics_selection2)) & (df2['Age group'].isin(age_group_selection2)) & (df2['Sex'].isin(gender_selection2))
         mask11 = (df2['NAICS'].isin(industry2)) & (df2['Geography'].isin(area_selection2)) & (df2['Labour force characteristics'].isin(characteristics_selection2)) & (df2['Age group'].isin(age_group_selection2)) & (df2['Sex'].isin(gender_selection2))
 
-
-        
-        fig7 = px.line(df2[mask11], x='Date', y='Value', color='NAICS', title= "Goods VS Services",color_discrete_sequence=px.colors.qualitative.Dark2, template ='ygridoff')
-        fig7.update_layout(title_x=0.5, title_y=0.9, width = 1000, height=600)
-        # fig7.update_layout({'plot_bgcolor':'rgba(0,0,0,0)'})
-        fig7.update_layout(xaxis=dict(tickmode = 'linear',
-                                        tick0 = 2017,
-                                        dtick = 1),
-                            yaxis=dict(tickmode = 'linear',
-                                        tick0 = 0,
-                                        dtick = 2000))
-        st.plotly_chart(fig7)
+        columns = st.columns((1,6,1))
+        with columns[0]:
+          st.markdown("")
+        with columns[1]:
+          fig7 = px.line(df2[mask11], x='Date', y='Value', color='NAICS', title= "Goods VS Services",color_discrete_sequence=px.colors.qualitative.Dark2, template ='ygridoff')
+          fig7.update_layout(title_x=0.5, title_y=0.9, width = 1000, height=600)
+          # fig7.update_layout({'plot_bgcolor':'rgba(0,0,0,0)'})
+          fig7.update_layout(xaxis=dict(tickmode = 'linear',
+                                          tick0 = 2017,
+                                          dtick = 1),
+                              yaxis=dict(tickmode = 'linear',
+                                          tick0 = 0,
+                                          dtick = 2000))
+          st.plotly_chart(fig7)
+        with columns[2]:
+          st.markdown("")
+          
+          
+          
         columns = st.columns((2,2))
         with columns[0]:
             fig8 = px.line(df2[mask9], x='Date', y='Value', color='NAICS', title= "Goods", template='ygridoff')
@@ -305,7 +312,7 @@ with container:
         fig10 = px.bar(df3[mask13], x='Value', y='Geography', color='Date', title='Education',
                             color_discrete_sequence=px.colors.qualitative.Set3, template ='ygridoff')
         fig10.update_layout(yaxis={'categoryorder':'total ascending'})
-        fig10.update_layout(title_x=0.5,yaxis_title=None, width=1200, height= 600)
+        fig10.update_layout(title_x=0.5,yaxis_title=None, width=1500, height= 600)
         fig10.update_yaxes(tickangle=0,ticklabelposition="inside top")
         fig10.update_layout(legend=dict(
                             yanchor="bottom",
