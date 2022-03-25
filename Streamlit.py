@@ -99,14 +99,14 @@ with container:
 
         with columns[0]:
             fig1 = px.line(df[mask2], x = 'Date', y = 'Value', title = 'Males', template='xgridoff')
-            fig1.update_layout( width=600, height = 375)
+            fig1.update_layout( width=550, height = 425)
             # fig1.update_layout({#'plot_bgcolor':'rgba(250, 240, 230, 0.5)',
             #                     'paper_bgcolor':'#AFEEEE'})
             st.plotly_chart(fig1)
 
         with columns[1]:
             fig2 = px.line(df[mask14], x = 'Date', y = 'Value', title='Females' , template='xgridoff')
-            fig2.update_layout( width=600, height = 375)
+            fig2.update_layout( width=550, height = 425)
             # fig2.update_layout({'plot_bgcolor':'rgba(255, 0, 0, 0.2)'})
             st.plotly_chart(fig2)
 
@@ -229,10 +229,9 @@ with container:
           # fig7.update_layout({'plot_bgcolor':'rgba(0,0,0,0)'})
           fig7.update_layout(xaxis=dict(tickmode = 'linear',
                                           tick0 = 2017,
-                                          dtick = 1),
-                              yaxis=dict(tickmode = 'linear',
-                                          tick0 = 0,
-                                          dtick = 2000))
+                                          dtick = 1),)ear',
+#                                           tick0 = 0,
+#                                           dtick = 2000))
           st.plotly_chart(fig7)
         with columns[2]:
           st.markdown("")
@@ -242,28 +241,28 @@ with container:
         columns = st.columns((2,2))
         with columns[0]:
             fig8 = px.line(df2[mask9], x='Date', y='Value', color='NAICS', title= "Goods", template='ygridoff')
-            fig8.update_layout(title_x=0.5, title_y=0.9, width = 550, height=400)
+            fig8.update_layout(title_x=0.5, title_y=0.5, width = 550, height=500)
             # fig8.update_layout({'plot_bgcolor':'rgba(0,0,0,0)'})
             fig8.update_layout(xaxis=dict(tickmode = 'linear',
                                             tick0 = 2017,
-                                            dtick = 1),
-                            yaxis=dict(tickmode = 'linear',
-                                            tick0 = 0,
-                                            dtick = 100))
+                                            dtick = 1))
+#                             yaxis=dict(tickmode = 'linear',
+#                                             tick0 = 0,
+#                                             dtick = 100))
             fig8.update_layout(legend=dict(yanchor="top", y=0.9, xanchor="left", x=1.0))
             st.plotly_chart(fig8)
 
         with columns[1]:
             fig9 = px.line(df2[mask10], x='Date', y='Value',#, facet_col='NAICS',facet_col_wrap=3, 
                             color ='NAICS', title= "Services",template='ygridoff')
-            fig9.update_layout(title_x=0.5, title_y=1.0, width = 550, height=400)
+            fig9.update_layout(title_x=0.5, title_y=0.5, width = 550, height=500)
             # fig9.update_layout({'plot_bgcolor':'rgba(0,0,0,0)'})
             fig9.update_layout(xaxis=dict(tickmode = 'linear',
                                             tick0 = 2017,
-                                            dtick = 1),
-                            yaxis=dict(tickmode = 'linear',
-                                            tick0 = 0,
-                                            dtick = 100))
+                                            dtick = 1))
+#                             yaxis=dict(tickmode = 'linear',
+#                                             tick0 = 0,
+#                                             dtick = 100))
             st.plotly_chart(fig9)
 
 
