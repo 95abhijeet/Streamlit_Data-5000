@@ -240,7 +240,7 @@ with container:
         columns = st.columns((2,2))
         with columns[0]:
             fig8 = px.line(df2[mask9], x='Date', y='Value', color='NAICS', title= "Goods", template='ygridoff')
-            fig8.update_layout(title_x=0.5, title_y=0.5, width = 550, height=500)
+            fig8.update_layout(title_x=0.5, title_y=0.85, width = 550, height=500)
             # fig8.update_layout({'plot_bgcolor':'rgba(0,0,0,0)'})
             fig8.update_layout(xaxis=dict(tickmode = 'linear',
                                             tick0 = 2017,
@@ -254,7 +254,7 @@ with container:
         with columns[1]:
             fig9 = px.line(df2[mask10], x='Date', y='Value',#, facet_col='NAICS',facet_col_wrap=3, 
                             color ='NAICS', title= "Services",template='ygridoff')
-            fig9.update_layout(title_x=0.5, title_y=0.5, width = 550, height=500)
+            fig9.update_layout(title_x=0.5, title_y=0.85, width = 550, height=500)
             # fig9.update_layout({'plot_bgcolor':'rgba(0,0,0,0)'})
             fig9.update_layout(xaxis=dict(tickmode = 'linear',
                                             tick0 = 2017,
