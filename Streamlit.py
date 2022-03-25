@@ -123,20 +123,20 @@ with container:
         st.markdown("*This section uses same filter as Section 1*  \n"
                     "*Age filter at top is not applicable for this section*")
         
-        columns = st.columns((3,2))
+#         columns = st.columns((3,2))
 
-        with columns[0]:
+#         with columns[0]:
         # st.markdown("___")
        
-            fig4=px.line(df[mask4], x='Date', y='Value',title ='Age 15 and above', template='xgridoff')
-            fig4.update_layout( width=800, height=450)
-            st.plotly_chart(fig4)
+          fig4=px.line(df[mask4], x='Date', y='Value',title ='Age 15 and above', template='xgridoff')
+          fig4.update_layout( width=800, height=450)
+          st.plotly_chart(fig4)
 
-            fig3=px.line(df[mask3], x='Date', y='Value', facet_col='Age group', template='xgridoff')
-            fig3.update_layout( width=800, height=350)
-            st.plotly_chart(fig3)
+          fig3=px.line(df[mask3], x='Date', y='Value', facet_col='Age group', template='xgridoff')
+          fig3.update_layout( width=800, height=350)
+          st.plotly_chart(fig3)
 
-        with columns[1]:
+#         with columns[1]:
 #             st.markdown("The plot shows a sudden increase in unemployment in the 15-24 age group between January to May 2020 compared to other groups.  \n"
 #                         "The age of 15-24 is a transition from school to work, which means that they are inexperienced in the labour market and  \n"
 #                         "cannot obtain jobs with high security during the pandemic.")
