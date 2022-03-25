@@ -229,9 +229,8 @@ with container:
           # fig7.update_layout({'plot_bgcolor':'rgba(0,0,0,0)'})
           fig7.update_layout(xaxis=dict(tickmode = 'linear',
                                           tick0 = 2017,
-                                          dtick = 1),)ear',
-#                                           tick0 = 0,
-#                                           dtick = 2000))
+                                          dtick = 1))
+
           st.plotly_chart(fig7)
         with columns[2]:
           st.markdown("")
