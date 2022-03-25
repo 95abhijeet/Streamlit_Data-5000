@@ -13,7 +13,7 @@ import plotly.io as pio
 from plotly.subplots import make_subplots
 import plotly.graph_objects as go
 
-st.set_page_config(page_title='Data 5000 project') 
+st.set_page_config(page_title='Data 5000 project', layout='wide') 
                                                 #    menu_items={
                                                 #                'Get Help': '<95abhijeet@gmail.com>',
                                                 #                'Report a bug': "<95abhijeet@gmail.com>"})
