@@ -320,7 +320,7 @@ with container:
         fig10 = px.bar(df3[mask13], x='Value', y='Geography', color='Date', title='Education',
                             color_discrete_sequence=px.colors.qualitative.Set3, template ='ygridoff')
         fig10.update_layout(yaxis={'categoryorder':'total ascending'})
-        fig10.update_layout(title_x=0.5,yaxis_title=None, width=1200, height= 700)
+        fig10.update_layout(title_x=0.5,yaxis_title=None, width=1300, height= 600)
         fig10.update_yaxes(tickangle=0,ticklabelposition="inside top")
         fig10.update_layout(legend=dict(
                             yanchor="bottom",
@@ -363,7 +363,7 @@ with container:
         
         st.markdown("")
         st.markdown("The line chart illustrates the comparison between Canadian emergency response benefits and job search interest.  \n"
-                    "At the beginning of COVID-19 in April 2020, there is a dramatic drop in job search interest, which is influenced  \n"
+                    "At the beginning of COVID-19 in April 2020, there is a gradual drop in job search interest, which is influenced  \n"
                     "by the availability of CERB weekly benefits.")
 ##  dataset
 # with container:
