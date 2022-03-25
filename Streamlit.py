@@ -13,7 +13,7 @@ import plotly.io as pio
 from plotly.subplots import make_subplots
 import plotly.graph_objects as go
 
-st.set_page_config(page_title='Data 5000 project', layout='wide') 
+st.set_page_config(page_title='Data 5000 project') 
                                                 #    menu_items={
                                                 #                'Get Help': '<95abhijeet@gmail.com>',
                                                 #                'Report a bug': "<95abhijeet@gmail.com>"})
@@ -99,14 +99,14 @@ with container:
 
         with columns[0]:
             fig1 = px.line(df[mask2], x = 'Date', y = 'Value', title = 'Males', template='xgridoff')
-            fig1.update_layout( width=800, height = 350)
+            fig1.update_layout( width=700, height = 450)
             # fig1.update_layout({#'plot_bgcolor':'rgba(250, 240, 230, 0.5)',
             #                     'paper_bgcolor':'#AFEEEE'})
             st.plotly_chart(fig1)
 
         with columns[1]:
             fig2 = px.line(df[mask14], x = 'Date', y = 'Value', title='Females' , template='xgridoff')
-            fig2.update_layout( width=800, height = 350)
+            fig2.update_layout( width=700, height = 450)
             # fig2.update_layout({'plot_bgcolor':'rgba(255, 0, 0, 0.2)'})
             st.plotly_chart(fig2)
 
@@ -123,7 +123,7 @@ with container:
         st.markdown("*This section uses same filter as Section 1*  \n"
                     "*Age filter at top is not applicable for this section*")
         
-        columns = st.columns((2,1))
+        columns = st.columns((3,2))
 
         with columns[0]:
         # st.markdown("___")
@@ -289,7 +289,7 @@ with container:
         types_status = df3['Status of student in Canada'].unique().tolist()
         types_geo = df3['Geography'].unique().tolist()
         
-        columns =  st.columns((1,1,1))
+        columns =  st.columns((2,2,2,2))
 
         with columns[0]:    
             standards_selection = [st.radio("Types of standards",
@@ -302,6 +302,8 @@ with container:
         with columns[2]:
             status_selection = [st.radio("Status of student",
                                         types_status)]
+        with columns[3]:
+            st.markdown(" ")
         
         geography1 = ['Canada']
         geography2 = ['Alberta','British Columbia','Manitoba','New Brunswick','Newfoundland and Labrador','Nova Scotia','Ontario','Prince Edward Island','Quebec','Saskatchewan','Territories']
@@ -318,13 +320,13 @@ with container:
         fig10 = px.bar(df3[mask13], x='Value', y='Geography', color='Date', title='Education',
                             color_discrete_sequence=px.colors.qualitative.Set3, template ='ygridoff')
         fig10.update_layout(yaxis={'categoryorder':'total ascending'})
-        fig10.update_layout(title_x=0.5,yaxis_title=None, width=1000, height= 600)
+        fig10.update_layout(title_x=0.5,yaxis_title=None, width=1200, height= 700)
         fig10.update_yaxes(tickangle=0,ticklabelposition="inside top")
         fig10.update_layout(legend=dict(
                             yanchor="bottom",
                             y=0.01,
                             xanchor="right",
-                            x=0.8))
+                            x=0.9))
         # fig10.update_layout({'plot_bgcolor':'rgba(0,0,0,0)'})
         st.plotly_chart(fig10)
 
