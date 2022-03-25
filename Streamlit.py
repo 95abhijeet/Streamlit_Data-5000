@@ -99,21 +99,21 @@ with container:
 
         with columns[0]:
             fig1 = px.line(df[mask2], x = 'Date', y = 'Value', title = 'Males', template='xgridoff')
-            fig1.update_layout( width=700, height = 450)
+            fig1.update_layout( width=600, height = 375)
             # fig1.update_layout({#'plot_bgcolor':'rgba(250, 240, 230, 0.5)',
             #                     'paper_bgcolor':'#AFEEEE'})
             st.plotly_chart(fig1)
 
         with columns[1]:
             fig2 = px.line(df[mask14], x = 'Date', y = 'Value', title='Females' , template='xgridoff')
-            fig2.update_layout( width=700, height = 450)
+            fig2.update_layout( width=600, height = 375)
             # fig2.update_layout({'plot_bgcolor':'rgba(255, 0, 0, 0.2)'})
             st.plotly_chart(fig2)
 
 #         st.markdown("*We can write some description here*")
-        st.write("An exploratory analysis of unemployment by gender in the labour market shows that there is a sharp increase from January to May 2020  \n"
-                 "for both males and females. This may be influenced by the initial increase at COVID-19 that led to restrictions on labour mobility and  \n"
-                 "the cessation of economic activity in the Ontario region.")
+#         st.write("An exploratory analysis of unemployment by gender in the labour market shows that there is a sharp increase from January to May 2020  \n"
+#                  "for both males and females. This may be influenced by the initial increase at COVID-19 that led to restrictions on labour mobility and  \n"
+#                  "the cessation of economic activity in the Ontario region.")
 
 ###         COMPARISION BY AGE
 with container:
@@ -137,9 +137,9 @@ with container:
             st.plotly_chart(fig3)
 
         with columns[1]:
-            st.markdown("The plot shows a sudden increase in unemployment in the 15-24 age group between January to May 2020 compared to other groups.  \n"
-                        "The age of 15-24 is a transition from school to work, which means that they are inexperienced in the labour market and  \n"
-                        "cannot obtain jobs with high security during the pandemic.")
+#             st.markdown("The plot shows a sudden increase in unemployment in the 15-24 age group between January to May 2020 compared to other groups.  \n"
+#                         "The age of 15-24 is a transition from school to work, which means that they are inexperienced in the labour market and  \n"
+#                         "cannot obtain jobs with high security during the pandemic.")
 
     
         # columns = st.columns((2,2))
@@ -242,7 +242,7 @@ with container:
         columns = st.columns((2,2))
         with columns[0]:
             fig8 = px.line(df2[mask9], x='Date', y='Value', color='NAICS', title= "Goods", template='ygridoff')
-            fig8.update_layout(title_x=0.5, title_y=0.9, width = 700, height=500)
+            fig8.update_layout(title_x=0.5, title_y=0.9, width = 550, height=400)
             # fig8.update_layout({'plot_bgcolor':'rgba(0,0,0,0)'})
             fig8.update_layout(xaxis=dict(tickmode = 'linear',
                                             tick0 = 2017,
@@ -256,7 +256,7 @@ with container:
         with columns[1]:
             fig9 = px.line(df2[mask10], x='Date', y='Value',#, facet_col='NAICS',facet_col_wrap=3, 
                             color ='NAICS', title= "Services",template='ygridoff')
-            fig9.update_layout(title_x=0.5, title_y=1.0, width = 700, height=500)
+            fig9.update_layout(title_x=0.5, title_y=1.0, width = 550, height=400)
             # fig9.update_layout({'plot_bgcolor':'rgba(0,0,0,0)'})
             fig9.update_layout(xaxis=dict(tickmode = 'linear',
                                             tick0 = 2017,
@@ -267,9 +267,9 @@ with container:
             st.plotly_chart(fig9)
 
 
-        st.markdown("The plot shows the impulsive decline in all industries in the goods and services sector at the beginning of COVID-19.  \n"
-                    "The decline is due to COVID-19, which led to the shutdown of economic activities and the restriction of labour mobility  \n"
-                    "and the cessation of trade between countries.")
+#         st.markdown("The plot shows the impulsive decline in all industries in the goods and services sector at the beginning of COVID-19.  \n"
+#                     "The decline is due to COVID-19, which led to the shutdown of economic activities and the restriction of labour mobility  \n"
+#                     "and the cessation of trade between countries.")
 
 
 
@@ -320,7 +320,7 @@ with container:
         fig10 = px.bar(df3[mask13], x='Value', y='Geography', color='Date', title='Education',
                             color_discrete_sequence=px.colors.qualitative.Set3, template ='ygridoff')
         fig10.update_layout(yaxis={'categoryorder':'total ascending'})
-        fig10.update_layout(title_x=0.5,yaxis_title=None, width=1300, height= 600)
+        fig10.update_layout(title_x=0.5,yaxis_title=None, width=1150, height= 550)
         fig10.update_yaxes(tickangle=0,ticklabelposition="inside top")
         fig10.update_layout(legend=dict(
                             yanchor="bottom",
@@ -355,16 +355,16 @@ with container:
     # st.markdown("___")
     with st.expander("Section 5 : Additional information using Google trends"):
 
-        st.subheader("Google trends on Job search")
+#         st.subheader("Google trends on Job search")
         htmlfile=open("Google trend.html", 'r', encoding ='utf-8')
         source_code = htmlfile.read()
         print(source_code)
         components.html(source_code, height = 900, width = 1000)
         
         st.markdown("")
-        st.markdown("The line chart illustrates the comparison between Canadian emergency response benefits and job search interest.  \n"
-                    "At the beginning of COVID-19 in April 2020, there is a gradual drop in job search interest, which is influenced  \n"
-                    "by the availability of CERB weekly benefits.")
+#         st.markdown("The line chart illustrates the comparison between Canadian emergency response benefits and job search interest.  \n"
+#                     "At the beginning of COVID-19 in April 2020, there is a gradual drop in job search interest, which is influenced  \n"
+#                     "by the availability of CERB weekly benefits.")
 ##  dataset
 # with container:
 #     st.subheader("Filtered Dataset")
