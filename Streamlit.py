@@ -365,49 +365,49 @@ with container:
                 'Part time employment', 'Full time employment' ], axis=1)
         y = scaled["Unemployment rate"]
 
-        if st.button('Click the button to run the model'):
-            st.subheader("Random Forest Regressor Model")
-            X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=0)
+#         if st.button('Click the button to run the model'):
+#             st.subheader("Random Forest Regressor Model")
+#             X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=0)
 
-            regressor = RandomForestRegressor()
-            yoyo = regressor.fit(X_train, y_train)
-            y_pred = regressor.predict(X_test)
+#             regressor = RandomForestRegressor()
+#             yoyo = regressor.fit(X_train, y_train)
+#             y_pred = regressor.predict(X_test)
 
-            mae = metrics.mean_absolute_error(y_test, y_pred)
+#             mae = metrics.mean_absolute_error(y_test, y_pred)
             
-            mse = metrics.mean_squared_error(y_test, y_pred)
+#             mse = metrics.mean_squared_error(y_test, y_pred)
             
-            rmse = np.sqrt(metrics.mean_squared_error(y_test, y_pred))
+#             rmse = np.sqrt(metrics.mean_squared_error(y_test, y_pred))
             
-            r2 = r2_score(y_test, y_pred)
+#             r2 = r2_score(y_test, y_pred)
 
-            columns = st.columns((1,1,1,1))
+#             columns = st.columns((1,1,1,1))
 
-            with columns[0]:
-                st.markdown("Mean absolute error: " + str(mae))
-            with columns[1]:
-                st.markdown("Mean squared error: " + str(mse))
-            with columns[2]:
-                st.markdown("Root mean squared error: " + str(rmse))
-            with columns[3]:
-                st.markdown("Coefficient of determination (R2): " + str(r2))
+#             with columns[0]:
+#                 st.markdown("Mean absolute error: " + str(mae))
+#             with columns[1]:
+#                 st.markdown("Mean squared error: " + str(mse))
+#             with columns[2]:
+#                 st.markdown("Root mean squared error: " + str(rmse))
+#             with columns[3]:
+#                 st.markdown("Coefficient of determination (R2): " + str(r2))
 
-            feature_list = list(X.columns)
-            st.markdown(" ")
-            st.caption("One decision tree from the random forest regressor model")
-            fn=X.columns
-            cn=['Unemployment rate']
-            fig12 =plt.figure(dpi=1200, figsize=(4,2))
-            tree.plot_tree(yoyo.estimators_[0],
-                            feature_names = fn, 
-                            class_names=cn,
-                            filled = True,
-                                fontsize=4)
+#             feature_list = list(X.columns)
+#             st.markdown(" ")
+#             st.caption("One decision tree from the random forest regressor model")
+#             fn=X.columns
+#             cn=['Unemployment rate']
+#             fig12 =plt.figure(dpi=1200, figsize=(4,2))
+#             tree.plot_tree(yoyo.estimators_[0],
+#                             feature_names = fn, 
+#                             class_names=cn,
+#                             filled = True,
+#                                 fontsize=4)
                            
-            st.pyplot(fig12)
+#             st.pyplot(fig12)
             
 
-            st.markdown(" ")
+#             st.markdown(" ")
 
 #             image = Image.open('random forest1.png')
 #             st.image(image, caption = 'Random Forest Regressor Estimators',  output_format='PNG')
@@ -419,8 +419,8 @@ with container:
             # plt.title("Figure 6: Decision Tree Regressor Prediction")
             # st.pyplot(fig11)
 
-        else:
-            st.write(' ') #space with no statement
+#         else:
+#             st.write(' ') #space with no statement
         
         
 
