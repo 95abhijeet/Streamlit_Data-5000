@@ -1,5 +1,3 @@
-from email import header
-from email.policy import default
 from re import template
 from matplotlib.axis import YTick
 from matplotlib.pyplot import figure, title, xticks
@@ -15,15 +13,11 @@ import plotly.graph_objects as go
 import numpy as np
 from sklearn.preprocessing import MinMaxScaler
 from sklearn.model_selection import train_test_split
-from sklearn.linear_model import LinearRegression
-from sklearn.tree import DecisionTreeRegressor
 from sklearn.ensemble import RandomForestRegressor
 from sklearn import metrics
 from sklearn.metrics import r2_score
 import matplotlib.pyplot as plt
-import seaborn as sns
 from sklearn import tree
-from PIL import Image
 
 st.set_page_config(page_title='Data 5000 project', layout='wide') 
                                                 #    menu_items={
