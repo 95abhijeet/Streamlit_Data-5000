@@ -12,6 +12,18 @@ import plotly.express as px
 import plotly.io as pio
 from plotly.subplots import make_subplots
 import plotly.graph_objects as go
+import numpy as np
+from sklearn.preprocessing import MinMaxScaler
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LinearRegression
+from sklearn.tree import DecisionTreeRegressor
+from sklearn.ensemble import RandomForestRegressor
+from sklearn import metrics
+from sklearn.metrics import r2_score
+import matplotlib.pyplot as plt
+import seaborn as sns
+from sklearn import tree
+from PIL import Image
 
 st.set_page_config(page_title='Data 5000 project', layout='wide') 
                                                 #    menu_items={
@@ -41,12 +53,13 @@ with container:
             "Section 2 : Age  \n"
             "Section 3 : Industries  \n"
             "Section 4 : Education  \n"
-            "Section 5 : Observations based on Google trends")
+            "Section 5 : Machine learning model  \n"
+            "Section 6 : Observations based on Google trends")
     st.markdown("___")
 
     with st.expander("Section 1 : Gender"):
     
-        df=pd.DataFrame(pd.read_csv('Cleaned_Labour force_V1.1.csv'))
+        df=pd.DataFrame(pd.read_csv('F:/Second term/5000/Project/Datasets/Cleaned_Labour force_V1.1.csv'))
         # datset for labour force
 
 
@@ -169,7 +182,7 @@ with container:
 
 ###     INDUSTRY
 
-df2 = pd.DataFrame(pd.read_csv('Cleaned_Industry_V1.1.csv'))
+df2 = pd.DataFrame(pd.read_csv('F:/Second term/5000/Project/Datasets/Cleaned_Industry_V1.1.csv'))
 # dataset for industries
 
 with container:
@@ -273,7 +286,7 @@ with container:
 
 ###         EDUCATION
 
-df3 = pd.read_csv('Cleaned_Education_V1.1.csv')
+df3 = pd.read_csv('F:/Second term/5000/Project/Datasets/Cleaned_Education_V1.1.csv')
 
 with container:
 
@@ -344,14 +357,86 @@ with container:
         st.markdown(" ")
 
                         
+with container:
+    with st.expander("Section 5 : Machine learning model"):
+        df4= pd.DataFrame(pd.read_csv("F:/Second term/5000/Project/Datasets/ML combined Can.csv"))   
+
+        #Normalization
+        sc= MinMaxScaler()
+        first = sc.fit_transform(df4)
+        scaled = pd.DataFrame(first, columns = df4.columns)
+        
+
+        X = scaled.drop(['Unemployment rate','Employment', 'Employment rate', 'Unemployment', 
+                'Part time employment', 'Full time employment' ], axis=1)
+        y = scaled["Unemployment rate"]
+
+        if st.button('Click the button to run the model'):
+            st.subheader("Random Forest Regressor Model")
+            X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=0)
+
+            regressor = RandomForestRegressor()
+            yoyo = regressor.fit(X_train, y_train)
+            y_pred = regressor.predict(X_test)
+
+            mae = metrics.mean_absolute_error(y_test, y_pred)
+            
+            mse = metrics.mean_squared_error(y_test, y_pred)
+            
+            rmse = np.sqrt(metrics.mean_squared_error(y_test, y_pred))
+            
+            r2 = r2_score(y_test, y_pred)
+
+            columns = st.columns((1,1,1,1))
+
+            with columns[0]:
+                st.markdown("Mean absolute error: " + str(mae))
+            with columns[1]:
+                st.markdown("Mean squared error: " + str(mse))
+            with columns[2]:
+                st.markdown("Root mean squared error: " + str(rmse))
+            with columns[3]:
+                st.markdown("Coefficient of determination (R2): " + str(r2))
+
+            feature_list = list(X.columns)
+            st.markdown(" ")
+            st.caption("One decision tree from the random forest regressor model")
+            fn=X.columns
+            cn=['Unemployment rate']
+            fig12 =plt.figure(dpi=1200, figsize=(4,2))
+            tree.plot_tree(yoyo.estimators_[0],
+                            feature_names = fn, 
+                            class_names=cn,
+                            filled = True,
+                                fontsize=4)
+                           
+            st.pyplot(fig12)
+            
+
+            st.markdown(" ")
+
+            image = Image.open('random forest1.png')
+            st.image(image, caption = 'Random Forest Regressor Estimators',  output_format='PNG')
+
+            # fig11 = plt.figure(figsize=(5,5))
+            # plt.scatter(y_test,y_pred,color='g', alpha=0.5)
+            # plt.ylabel("Predicted Values")
+            # plt.xlabel("Actual Values")
+            # plt.title("Figure 6: Decision Tree Regressor Prediction")
+            # st.pyplot(fig11)
+
+        else:
+            st.write(' ') #space with no statement
         
         
-     
+
+        
+
 
 ###     GOOGLE TRENDS
 with container:
     # st.markdown("___")
-    with st.expander("Section 5 : Additional information using Google trends"):
+    with st.expander("Section 6 : Additional information using Google trends"):
 
 #         st.subheader("Google trends on Job search")
         htmlfile=open("Google trend.html", 'r', encoding ='utf-8')
