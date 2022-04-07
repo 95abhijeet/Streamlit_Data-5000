@@ -351,19 +351,19 @@ with container:
         st.markdown(" ")
 
                         
-with container:
-    with st.expander("Section 5 : Machine learning model"):
-        df4= pd.DataFrame(pd.read_csv("ML combined Can.csv"))   
+# with container:
+#     with st.expander("Section 5 : Machine learning model"):
+#         df4= pd.DataFrame(pd.read_csv("ML combined Can.csv"))   
 
-        #Normalization
-        sc= MinMaxScaler()
-        first = sc.fit_transform(df4)
-        scaled = pd.DataFrame(first, columns = df4.columns)
+#         #Normalization
+#         sc= MinMaxScaler()
+#         first = sc.fit_transform(df4)
+#         scaled = pd.DataFrame(first, columns = df4.columns)
         
 
-        X = scaled.drop(['Unemployment rate','Employment', 'Employment rate', 'Unemployment', 
-                'Part time employment', 'Full time employment' ], axis=1)
-        y = scaled["Unemployment rate"]
+#         X = scaled.drop(['Unemployment rate','Employment', 'Employment rate', 'Unemployment', 
+#                 'Part time employment', 'Full time employment' ], axis=1)
+#         y = scaled["Unemployment rate"]
 
 #         if st.button('Click the button to run the model'):
 #             st.subheader("Random Forest Regressor Model")
