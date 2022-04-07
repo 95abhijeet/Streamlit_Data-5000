@@ -403,7 +403,7 @@ with container:
             st.caption("One decision tree from the random forest regressor model")
             fn=X.columns
             cn=['Unemployment rate']
-            fig12 =plt.figure(dpi=1500, figsize=(11,5))
+            fig12 =plt.figure(dpi=1500, figsize=(12,5))
             tree.plot_tree(model.estimators_[0],
                             feature_names = fn, 
                             class_names=cn,
