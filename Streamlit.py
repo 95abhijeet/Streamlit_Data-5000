@@ -410,8 +410,8 @@ with container:
 
             st.markdown(" ")
 
-            image = Image.open('random forest1.png')
-            st.image(image, caption = 'Random Forest Regressor Estimators',  output_format='PNG')
+#             image = Image.open('random forest1.png')
+#             st.image(image, caption = 'Random Forest Regressor Estimators',  output_format='PNG')
 
 #             fig11 = plt.figure(figsize=(5,5))
 #             plt.scatter(y_test,y_pred,color='g', alpha=0.5)
