@@ -408,7 +408,7 @@ with container:
                             feature_names = fn, 
                             class_names=cn,
                             filled = True,
-                                fontsize=4)
+                                fontsize=2)
                            
             st.pyplot(fig12)
             
