@@ -10,14 +10,7 @@ import plotly.express as px
 import plotly.io as pio
 from plotly.subplots import make_subplots
 import plotly.graph_objects as go
-import numpy as np
-from sklearn.preprocessing import MinMaxScaler
-from sklearn.model_selection import train_test_split
-from sklearn.ensemble import RandomForestRegressor
-from sklearn import metrics
-from sklearn.metrics import r2_score
-import matplotlib.pyplot as plt
-from sklearn import tree
+
 
 st.set_page_config(page_title='Data 5000 project', layout='wide') 
                                                 #    menu_items={
